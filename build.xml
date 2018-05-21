@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<project name="TradeFunds-UserExits" default="build" basedir=".">
+
+    <!--
+	Set the classpath used for compiling the application source
+	-->
+    <path id="classpath.compile">
+        <fileset dir="lib" includes="*.jar" />
+    </path>
+
+	<!--
+	Clean the output directory by removing all compiled code and output files
+	-->
+    <target name="clean" description="Cleans up all files created by the build">
+        <delete dir="build" failonerror="false" />
+    </target>
+
+	<!--
+	Build the application
+	-->
+    <target name="build" depends="compile,create_jar" >
+    </target>
+
+	<!--
+		Compile the source code
+	-->
+    <target name="compile" description="compile">
+        <mkdir dir="build/classes" />
+        <javac srcdir="source/java" destdir="build/classes" includes="**" excludes="" debug="on" optimize="off" deprecation="on">
+            <classpath refid="classpath.compile" />
+        </javac>
+    </target>
+
+    <target name="create_jar">
+        <jar destfile="build/UserExitsImplementation.jar" >
+            <fileset dir="build/classes" includes="**/*" />
+        </jar>
+    </target>
+	
+</project>
